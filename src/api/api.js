@@ -9,7 +9,6 @@ export async function getNetworkSecurityZoneRecords(setAllSecurityZones) {
       },
     });
 
-    console.log("network security zone records", res.data.result);
     setAllSecurityZones(res.data.result);
   } catch (e) {
     console.error("e", e);
@@ -28,7 +27,7 @@ export async function getNetworkSecurityZoneSwitchRecords(
         },
       }
     );
-    console.log("results", resp.data.result);
+
     setAllZoneSwitchRecords(resp.data.result);
   } catch (err) {
     console.error("err", err);
@@ -42,8 +41,6 @@ export async function UpdateNetworkSecurityZoneSwitchRecords(
 ) {
   try {
     const availIpWithSysIds = getSysIdsForAvailIps();
-    console.log("yo?", availIpWithSysIds);
-    console.log("matched stuff", matchedZonesAndIpPools);
 
     await axios.post(ENDPOINTS.UPDATE_NETWORK_SECURITY_ZONE_SWITCH_RECORDS, {
       matched_records: matchedZonesAndIpPools,
@@ -52,6 +49,5 @@ export async function UpdateNetworkSecurityZoneSwitchRecords(
     closeModal();
   } catch (e) {
     console.error("e", e);
-    // add spinner and/warning that there was an error
   }
 }
