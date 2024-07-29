@@ -175,12 +175,3 @@ function App() {
 }
 
 export default hot(App);
-
-/**
-
-  - double check if it was the right decision to independently query the security zone table
-
-  - ask if the same should be done with the ip pool table
-
- - should it to persist on cancel or to refresh?
- */
