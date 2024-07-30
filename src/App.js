@@ -75,14 +75,16 @@ function App() {
     );
   }
 
-  function deleteNetworkSecurityZoneInfo(newIpPoolRecord) {
-    // filter ip obj from matched pool
+  function removeIpPoolRecordFromMatchedRecords(newIpPoolRecord) {
     setMatchedZonesAndIpPools(
       matchedZonesAndIpPools.filter((record) => {
         return record.u_ip_pool.value !== newIpPoolRecord.value;
       })
     );
-    // add to available pool
+  }
+
+  function removeIpPoolRecord(newIpPoolRecord) {
+    removeIpPoolRecordFromMatchedRecords(newIpPoolRecord);
     setAvailableIpPools([...availableIpPools, newIpPoolRecord]);
   }
 
@@ -161,7 +163,7 @@ function App() {
                   inEditMode={inEditMode}
                   setInEditMode={setInEditMode}
                   updateIpPoolDisplayValue={updateIpPoolDisplayValue}
-                  deleteNetworkSecurityZoneInfo={deleteNetworkSecurityZoneInfo}
+                  removeIpPoolRecord={removeIpPoolRecord}
                 />
               );
             })}

@@ -6,7 +6,7 @@ export const ExistingCard = ({
   inEditMode,
   setInEditMode,
   updateIpPoolDisplayValue,
-  deleteNetworkSecurityZoneInfo,
+  removeIpPoolRecord,
 }) => {
   const [formDisabled, setFormDisabled] = useState(true);
   const [textBoxVariant, setTextBoxVariant] = useState("filled");
@@ -88,7 +88,7 @@ export const ExistingCard = ({
           className="card-button"
           onClick={() => {
             if (formDisabled) {
-              deleteNetworkSecurityZoneInfo(currNewIpInfo);
+              removeIpPoolRecord(currNewIpInfo);
             } else {
               setFormDisabled(!formDisabled);
               setDisabledMode();
