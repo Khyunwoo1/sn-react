@@ -36,23 +36,28 @@ function App() {
     setMySwitchSysId(urlSearchVal.match(regex)[1]);
   }
 
+  function filtersZoneWithIpPoolRecords() {
+    const filtered = allZoneSwitchRecords.filter(
+      (record) =>
+        record.u_switch.value === mySwitchSysId &&
+        record.u_network_security_zone.value &&
+        record.u_ip_pool.value
+    );
+
+    setMatchedZonesAndIpPools(filtered);
+  }
+
   function setDropDownLists() {
     const filteredIpPools = [];
-    const zonesWithIpPools = [];
 
     allZoneSwitchRecords.forEach((record) => {
       if (record.u_switch.value === mySwitchSysId) {
-        // record has matching ip pools with network zone names
-        if (record.u_network_security_zone.value && record.u_ip_pool.value) {
-          zonesWithIpPools.push(record);
-        } else if (!record.u_network_security_zone.value) {
-          // ip pool info only
+        if (!record.u_network_security_zone.value) {
           filteredIpPools.push(record.u_ip_pool);
         }
       }
     });
-
-    setMatchedZonesAndIpPools(zonesWithIpPools);
+    filtersZoneWithIpPoolRecords();
     setAvailableIpPools(filteredIpPools);
   }
 
