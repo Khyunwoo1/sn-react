@@ -115,3 +115,7 @@ body {
   #display-selected-ip-pool {
     margin-bottom: 12px;
   }
+
+  #full-ip-pool-value {
+    font-size: 10px;
+  }

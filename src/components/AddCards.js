@@ -68,7 +68,7 @@ export const AddCards = ({
         {!selectedIpPoolInfo.value ? (
           <p>No ip pools available</p>
         ) : (
-          selectedIpPoolInfo.display_value
+          <p id="full-ip-pool-value">{selectedIpPoolInfo.display_value}</p>
         )}
         <br />
         <div className="card-text-container">
@@ -96,7 +96,7 @@ export const AddCards = ({
                 <TextField
                   {...params}
                   InputProps={{ ...params.InputProps }}
-                  label="Controllable"
+                  label="Zone Names"
                   variant="outlined"
                 />
               )}
@@ -119,7 +119,7 @@ export const AddCards = ({
                 <TextField
                   {...params}
                   InputProps={{ ...params.InputProps }}
-                  label="Controllable"
+                  label="Ip Pool"
                   variant="outlined"
                 />
               )}
