@@ -36,7 +36,7 @@ function App() {
     setMySwitchSysId(urlSearchVal.match(regex)[1]);
   }
 
-  function filtersZoneWithIpPoolRecords() {
+  function getMatchedZonesAndIpPools() {
     setMatchedZonesAndIpPools(
       allZoneSwitchRecords.filter(
         (record) =>
@@ -47,7 +47,7 @@ function App() {
     );
   }
 
-  function filterIpPoolRecordsOnly() {
+  function getAvailableIpPools() {
     setAvailableIpPools(
       allZoneSwitchRecords
         .filter(
@@ -60,8 +60,8 @@ function App() {
   }
 
   function setDropDownLists() {
-    filtersZoneWithIpPoolRecords();
-    filterIpPoolRecordsOnly();
+    getMatchedZonesAndIpPools();
+    getAvailableIpPools();
   }
 
   function updateIpPoolDisplayValue(updatedIpRecord) {
