@@ -65,7 +65,12 @@ export const AddCards = ({
         justifyContent="center"
         alignItems="center"
       >
-        {!selectedIpPoolInfo.value ? <p>No ip pools available</p> : null}
+        {!selectedIpPoolInfo.value ? (
+          <p>No ip pools available</p>
+        ) : (
+          selectedIpPoolInfo.display_value
+        )}
+        <br />
         <div className="card-text-container">
           <Grid
             className="card-container"
