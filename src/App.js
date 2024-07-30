@@ -116,20 +116,18 @@ function App() {
   }
 
   function getSysIdsForAvailIps() {
-    const ipsWithSysIdsList = [];
-    for (let i = 0; i < allZoneSwitchRecords.length; i++) {
-      for (let j = 0; j < availableIpPools.length; j++) {
-        if (
-          availableIpPools[j].value === allZoneSwitchRecords[i].u_ip_pool.value
-        ) {
-          ipsWithSysIdsList.push({
-            u_ip_pool: availableIpPools[j],
-            sys_id: allZoneSwitchRecords[i].sys_id.value,
-          });
-        }
-      }
-    }
-    return ipsWithSysIdsList;
+    const availIpPoolValues = new Set();
+    availableIpPools.forEach((record) => {
+      availIpPoolValues.add(record.value);
+    });
+
+    const ipPoolsWithSysIds = allZoneSwitchRecords
+      .filter((record) => availIpPoolValues.has(record.u_ip_pool.value))
+      .map((record) => {
+        return { u_ip_pool: record.u_ip_pool, sys_id: record.sys_id.value };
+      });
+
+    return ipPoolsWithSysIds;
   }
 
   function submitNetworkSecurityZoneInfo() {
